@@ -4,7 +4,8 @@ import React from 'react';
 
 const useStyles = makeStyles({
     root: {
-        minWidth: 275,
+        minWidth: 240,
+        margin: 2
     },
     bullet: {
         display: 'inline-block',
@@ -26,7 +27,6 @@ type PropsType = {
 }
 export const Cell: React.FC<PropsType> = ({img, title, price}) => {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
 
     return (
@@ -46,7 +46,10 @@ export const Cell: React.FC<PropsType> = ({img, title, price}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button size="small" >Buy online</Button>
+            </CardActions>
+            <CardActions>
+                <Button size="small">Documents</Button>
             </CardActions>
         </Card>
     );
