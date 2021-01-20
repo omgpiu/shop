@@ -12,12 +12,16 @@ const useStyles = makeStyles((theme) =>
         },
     }),
 );
-
-export const Paginator = () => {
+type PropsType = {
+    totalItemsCount: number
+}
+export const Paginator: React.FC<PropsType> = ({totalItemsCount}) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Pagination count={10} variant="outlined" shape="rounded"/>
+            <Pagination count={totalItemsCount} boundaryCount={2}
+                        showFirstButton
+                        showLastButton variant="outlined" shape="rounded"/>
         </div>
 
     );

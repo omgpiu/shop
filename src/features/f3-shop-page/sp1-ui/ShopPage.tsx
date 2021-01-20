@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {getItems} from '../sp2-bll/shop-page-selectors';
+import {getItems, getTotalItemsCount} from '../sp2-bll/shop-page-selectors';
 import {Grid} from '@material-ui/core';
 import {Cell} from '../../f4-cell/Cell';
 import {Paginator} from '../../../main/m4-common/c4-pagination/paginator';
@@ -10,6 +10,7 @@ type PropsType = {}
 
 export const ShopPage: React.FC<PropsType> = () => {
     const items = useSelector(getItems);
+    const totalItemsCount = useSelector(getTotalItemsCount)
 
 
     return (<>
@@ -27,7 +28,7 @@ export const ShopPage: React.FC<PropsType> = () => {
                 })
             }
             <Grid container style={{padding: '20px', justifyContent: 'center'}}>
-                <Paginator/>
+                <Paginator totalItemsCount={totalItemsCount}/>
             </Grid>
         </Grid>
 

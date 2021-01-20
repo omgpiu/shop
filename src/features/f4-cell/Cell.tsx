@@ -1,11 +1,12 @@
 import {makeStyles} from '@material-ui/core/styles';
-import {Button, Card, CardActions, CardContent, Typography} from '@material-ui/core';
-import React from 'react';
+import {Button, Card, CardActions, CardContent, TextField, Typography} from '@material-ui/core';
+import React, {useState} from 'react';
 
 const useStyles = makeStyles({
     root: {
         minWidth: 240,
-        margin: 2
+        margin: 2,
+        width: 275
     },
     bullet: {
         display: 'inline-block',
@@ -26,8 +27,12 @@ type PropsType = {
     price: number
 }
 export const Cell: React.FC<PropsType> = ({img, title, price}) => {
-    const classes = useStyles();
+    const classes = useStyles()
+    const [isActive, setIsActive] = useState(false)
 
+    const changeIsActive = () => {
+        setIsActive(!isActive)
+    }
 
     return (
         <Card className={classes.root}>
@@ -36,7 +41,7 @@ export const Cell: React.FC<PropsType> = ({img, title, price}) => {
                     {title}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    <img src={img} alt=""/>
+                    <img src={img} alt="" style={{width: '100%'}}/>
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                     adjective
@@ -45,11 +50,18 @@ export const Cell: React.FC<PropsType> = ({img, title, price}) => {
                     {price}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small" >Buy online</Button>
-            </CardActions>
-            <CardActions>
-                <Button size="small">Documents</Button>
+
+            <CardActions style={{flexWrap: 'wrap'}}>
+                {
+                    !isActive ? <Button style={{width: '250px', margin: '5px'}}
+                                        onClick={changeIsActive}
+                                        size="small" color="primary"
+                                        variant="contained">Buy
+                        online</Button> : <TextField  type='number' InputLabelProps={{shrink: true}}/>
+                }
+
+                <Button style={{width: '250px', margin: '5px'}} size="small" color="primary"
+                        variant="contained">Documents</Button>
             </CardActions>
         </Card>
     );
