@@ -11,7 +11,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import {Link} from 'react-router-dom'
-import {CART_PATH} from "../c2-routes/Routes";
+import {CART_PATH, SHOP_PAGE_PATH} from "../c2-routes/Routes";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -139,7 +139,7 @@ export default function Header() {
                     </Badge>
                 </IconButton>
                 {/*<p>Shopping cart</p>*/}
-                <Link to={CART_PATH}>Shopping cart</Link>
+
             </MenuItem>
             <MenuItem>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -173,7 +173,7 @@ export default function Header() {
                         color="inherit"
                         aria-label="open drawer"
                     >
-                        <MenuIcon/>
+                        <Link to={SHOP_PAGE_PATH}> <MenuIcon/></Link>
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         380 Volt
@@ -195,7 +195,8 @@ export default function Header() {
                     <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="secondary">
-                                <AddShoppingCartIcon/>
+
+                                <Link to={CART_PATH}> <AddShoppingCartIcon/></Link>
                             </Badge>
                         </IconButton>
                         <IconButton aria-label="show 17 new notifications" color="inherit">

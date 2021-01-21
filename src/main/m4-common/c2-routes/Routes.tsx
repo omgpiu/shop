@@ -21,7 +21,7 @@ export const Routes: React.FC<PropsType> = (props) => {
                    render={() => <Redirect to={SHOP_PAGE_PATH}/>}/>
             <Route path={CART_PATH} render={() => <Cart/>}/>
             <Route path={SHOP_PAGE_PATH} render={() => <ShopPage/>}/>
-            <Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>
+            {/*<Redirect from={'*'} to={PAGE_NOT_FOUND_PATH}/>*/}
         </Switch>
 
     </>;
