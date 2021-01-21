@@ -3,7 +3,6 @@ import {createStyles, fade, makeStyles, Theme} from '@material-ui/core/styles';
 import {AppBar, IconButton, InputBase, Toolbar, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -11,6 +10,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import {Link} from 'react-router-dom'
+import {CART_PATH} from "../c2-routes/Routes";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -134,9 +135,11 @@ export default function Header() {
                 <IconButton aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
                         <AddShoppingCartIcon/>
+
                     </Badge>
                 </IconButton>
-                <p>Shopping cart</p>
+                {/*<p>Shopping cart</p>*/}
+                <Link to={CART_PATH}>Shopping cart</Link>
             </MenuItem>
             <MenuItem>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
