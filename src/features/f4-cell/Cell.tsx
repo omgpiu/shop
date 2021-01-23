@@ -1,6 +1,9 @@
 import {makeStyles} from '@material-ui/core/styles';
-import {Button, Card, CardActions, CardContent, TextField, Typography} from '@material-ui/core';
+import {Button, Card, CardActions, CardContent, Typography} from '@material-ui/core';
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {ItemType} from '../../main/m4-common/types/Types';
+import {addNewItem} from '../f2-cart/c2-bll/cart-reducer';
 
 const useStyles = makeStyles({
     root: {
@@ -22,44 +25,50 @@ const useStyles = makeStyles({
 });
 
 type PropsType = {
-    img: string
-    title: string
-    price: number
+    item: ItemType
 }
-export const Cell: React.FC<PropsType> = ({img, title, price}) => {
+
+export const Cell: React.FC<PropsType> = ({item}) => {
+
     const classes = useStyles()
     const [isActive, setIsActive] = useState(false)
+    const dispatch = useDispatch()
 
     const changeIsActive = () => {
-        setIsActive(!isActive)
+        // setIsActive(!isActive)
+        dispatch(addNewItem({item}))
     }
 
     return (
         <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {title}
+                    {item.title}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    <img src={img} alt="" style={{width: '100%'}}/>
+                    <img src={item.img} alt="" style={{width: '100%'}}/>
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                     adjective
                 </Typography>
                 <Typography variant="body2" component="p">
-                    {price}
+                    {item.price}
                 </Typography>
             </CardContent>
 
             <CardActions style={{flexWrap: 'wrap'}}>
-                {
-                    !isActive ? <Button style={{width: '250px', margin: '5px'}}
-                                        onClick={changeIsActive}
-                                        size="small" color="primary"
-                                        variant="contained">Buy
-                        online</Button> : <TextField  type='number' InputLabelProps={{shrink: true}}/>
-                }
-
+                {/*{*/}
+                {/*    !isActive ? <Button style={{width: '250px', margin: '5px'}}*/}
+                {/*                        onClick={changeIsActive}*/}
+                {/*                        size="small" color="primary"*/}
+                {/*                        variant="contained">Buy*/}
+                {/*        online</Button> : <TextField  type='number' InputLabelProps={{shrink: true}}/>*/}
+                {/*}*/}
+                <Button style={{width: '250px', margin: '5px'}}
+                        onClick={changeIsActive}
+                        size="small" color="primary"
+                        variant="contained"
+                >Buy online</Button>
                 <Button style={{width: '250px', margin: '5px'}} size="small" color="primary"
                         variant="contained">Documents</Button>
             </CardActions>

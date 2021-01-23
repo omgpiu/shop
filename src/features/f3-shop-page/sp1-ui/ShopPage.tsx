@@ -17,13 +17,11 @@ export const ShopPage: React.FC<PropsType> = () => {
 
         <Grid container style={{marginTop: '5px', justifyContent: 'center'}}>
             {
-                items.map(item => {
+                items.map((item, index) => {
                     let allItems = items[item.id];
                     return <Grid key={item.id} style={{marginTop: '5px'}}>
                         <Cell
-                            title={item.title}
-                            img={item.img}
-                            price={item.price}/>
+                            item={item}/>
                     </Grid>;
                 })
             }

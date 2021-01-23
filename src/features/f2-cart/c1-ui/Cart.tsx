@@ -1,20 +1,21 @@
 import React from 'react';
-import {Grid} from "@material-ui/core";
+import {useSelector} from 'react-redux';
+import {getCartItems} from '../c2-bll/cart-selectors';
+import {CartList} from './CartContainer';
 
 export const Cart = () => {
-    return (<div>
-        <Grid container style={{marginTop: '5px', justifyContent: 'center'}}>
-            Hello
-            Hello
-            Hello
-            Hello
-            Hello
-            Hello
-            Hello
-            Hello
-            <Grid container style={{padding: '20px', justifyContent: 'center'}}>
-            </Grid>
-        </Grid>
+    const cartItems = useSelector(getCartItems)
+    return (
+        <div>
+            {
+                cartItems[0] && cartItems.map(item => {
+                    return (
+                        <CartList key={item.id} item={item}/>
+                    )
+                })
+            }
+        </div>
+    )
+}
 
-    </div>);
-};
+

@@ -28,70 +28,65 @@ const initialState = {
             price: 100
         },
         {
-            id: 1,
+            id: 5,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 2,
+            id: 6,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 3,
+            id: 7,
             img: com,
             title: 'Pressure',
             price: 100
         }, {
-            id: 4,
+            id: 8,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 1,
+            id: 9,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 2,
+            id: 10,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 3,
+            id: 11,
             img: com,
             title: 'Pressure',
             price: 100
         }, {
-            id: 4,
+            id:12,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 1,
+            id: 13,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 2,
+            id: 14,
             img: com,
             title: 'Pressure',
             price: 100
         },
         {
-            id: 3,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        }, {
-            id: 4,
+            id: 15,
             img: com,
             title: 'Pressure',
             price: 100
