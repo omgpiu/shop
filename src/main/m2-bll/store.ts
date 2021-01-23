@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import {shopPageReducer} from '../../features/f3-shop-page/sp2-bll/shop-page-reducer';
 
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     cart: cartReducer,
     app: appReducer,
     auth: authReducer,

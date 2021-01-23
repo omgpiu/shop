@@ -1,174 +1,94 @@
-import React from 'react';
+import com from '../main/m4-common/photo/Sensor_Foto_2105.jpg';
 
-export default 1;
-//
-// import NoSsr from '@material-ui/core/NoSsr';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Avatar from '@material-ui/core/Avatar';
-//
-// import Box from '@material-ui/core/Box';
-// import Button from '@material-ui/core/Button';
-// import Grid from '@material-ui/core/Grid';
-//
-//
-// const useStyles = makeStyles(() => ({
-//     root: {
-//         height: '100%',
-//         transition: '0.3s',
-//         position: 'relative',
-//         '&:before': {
-//             transition: '0.2s',
-//             position: 'absolute',
-//             width: '100%',
-//             height: '100%',
-//             content: '""',
-//             display: 'block',
-//             backgroundColor: '#d9daf1',
-//             borderRadius: '1rem',
-//             zIndex: 0,
-//             bottom: 0,
-//         },
-//         '&:hover': {
-//             '&:before': {
-//                 bottom: -6,
-//             },
-//             '& $card': {
-//                 boxShadow: '-12px 12px 64px 0 #bcc3d6',
-//             },
-//         },
-//     },
-//     card: {
-//         zIndex: 1,
-//         position: 'relative',
-//         borderRadius: '1rem',
-//         boxShadow: '0 6px 20px 0 #dbdbe8',
-//         backgroundColor: '#fff',
-//         transition: '0.4s',
-//         height: '100%',
-//     },
-//     logo: {
-//         width: 48,
-//         height: 48,
-//         borderRadius: '0.75rem',
-//     },
-//     avatar: {
-//         fontFamily: 'Ubuntu',
-//         fontSize: '0.875rem',
-//         backgroundColor: '#6d7efc',
-//     },
-//     join: {
-//         background: 'linear-gradient(to top, #638ef0, #82e7fe)',
-//         '& > *': {
-//             textTransform: 'none !important',
-//         },
-//     },
-// }));
-//
-// const CustomCard = ({
-//                         thumbnail,
-//                         title,
-//                         subtitle,
-//                         description,
-//                         joined = false,
-//                     }) => {
-//     const styles = useStyles();
-//     const btnStyles = useGraphicBtnStyles();
-//     return (
-//         <div className={styles.root}>
-//             <Column className={styles.card}>
-//                 <Row p={2} gap={2}>
-//                     <Avatar className={styles.logo} variant={'rounded'} src={thumbnail} />
-//                     <Info position={'middle'} useStyles={useApexInfoStyles}>
-//                         <InfoTitle>{title}</InfoTitle>
-//                         <InfoSubtitle>{subtitle}</InfoSubtitle>
-//                     </Info>
-//                 </Row>
-//                 <Box
-//                     pb={1}
-//                     px={2}
-//                     color={'grey.600'}
-//                     fontSize={'0.875rem'}
-//                     fontFamily={'Ubuntu'}
-//                 >
-//                     {description}
-//                 </Box>
-//                 <Row p={2} gap={2} position={'bottom'}>
-//                     <Item>
-//                         <AvatarGroup max={4} classes={{ avatar: styles.avatar }}>
-//                             {new Array(5).fill(0).map((_, index) => (
-//                                 <Avatar
-//                                     key={index}
-//                                     src={`https://i.pravatar.cc/300?img=${Math.floor(
-//                                         Math.random() * 30
-//                                     )}`}
-//                                 />
-//                             ))}
-//                         </AvatarGroup>
-//                     </Item>
-//                     <Item position={'middle-right'}>
-//                         <Button
-//                             className={styles.join}
-//                             classes={btnStyles}
-//                             variant={'contained'}
-//                             color={'primary'}
-//                             disableRipple
-//                         >
-//                             {joined ? 'Leave group' : 'Join group'}
-//                         </Button>
-//                     </Item>
-//                 </Row>
-//             </Column>
-//         </div>
-//     );
-// };
-//
-// export const TeamCardDemo = React.memo(function TeamCard() {
-//     return (
-//         <>
-//
-//             <Grid container spacing={4}>
-//                 <Grid item xs={12} md={6} lg={4}>
-//                     <CustomCard
-//                         thumbnail={
-//                             'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQHCBAj8nRJkEwjWg5TpNuSZZG9iscsf43V1mfx0LZHNDYW3S_&usqp=CAU'
-//                         }
-//                         title={'APEX Legends: Assemble!'}
-//                         subtitle={'Created by siriwatknp'}
-//                         description={
-//                             <>
-//                                 <b>Shining Alpaca</b> and 3 others are already members of this
-//                                 group.
-//                             </>
-//                         }
-//                     />
-//                 </Grid>
-//                 <Grid item xs={12} md={6} lg={4}>
-//                     <CustomCard
-//                         joined
-//                         thumbnail={
-//                             'https://cm1.narvii.com/7153/05204b8d8dcbb652dd1a8ceaafde997bc1909468_00.jpg'
-//                         }
-//                         title={'League of Legends Official'}
-//                         subtitle={'Created by LoL'}
-//                         description={
-//                             'You are already a member of this group since April 5th 2019.'
-//                         }
-//                     />
-//                 </Grid>
-//                 <Grid item xs={12} md={6} lg={4}>
-//                     <CustomCard
-//                         thumbnail={'https://avatarfiles.alphacoders.com/537/53765.jpg'}
-//                         title={'Overwatch official'}
-//                         subtitle={'Created by Bliz'}
-//                         description={
-//                             <>
-//                                 <b>RainBOW</b> and 3 others are already members of this group.
-//                             </>
-//                         }
-//                     />
-//                 </Grid>
-//             </Grid>
-//         </>
-//     );
-// });
-// export default TeamCardDemo
+import React, {ChangeEvent, useState} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import {useDispatch, useSelector} from 'react-redux';
+import {getCartItems, getQuantity} from '../features/f2-cart/c2-bll/cart-selectors';
+import {initialState, setQuantity} from '../features/f2-cart/c2-bll/cart-reducer';
+import {rootReducer} from '../main/m2-bll/store';
+
+const useStyles = makeStyles({
+    table: {
+        minWidth: 650,
+    },
+});
+
+const rows = [
+    {
+        id: 1,
+        img: com,
+        title: 'Pressure',
+        price: 100
+    },
+    {
+        id: 1,
+        img: com,
+        title: 'Pressure',
+        price: 100
+    },
+
+];
+
+export const CartTable = () => {
+    const [values, setValue] = useState('1')
+    const dispatch = useDispatch()
+    // const getQuantityItem = useSelector(getQuantity({},17))
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        // setValue(e.currentTarget.value)
+
+        dispatch(setQuantity({id: 1, quantityToBuy: +e.currentTarget.value}))
+
+        // if (+values >= 0) {
+        //     setValue(e.currentTarget.value)
+        // } else if (+values < 0) {
+        //     setValue('0')
+        // }
+
+    }
+
+
+    const classes = useStyles();
+    const cartItems = useSelector(getCartItems)
+    return (
+
+        <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Selected Items</TableCell>
+                        <TableCell align="right"></TableCell>
+                        <TableCell align="right"></TableCell>
+                        <TableCell align="right">Unit Price</TableCell>
+                        <TableCell align="right">Quantity</TableCell>
+                        <TableCell align="right">Subtotal</TableCell>
+
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {cartItems.map((row) => (
+                        <TableRow key={row.id}>
+                            <TableCell component="th" scope="row">
+                                <input type='checkbox'/>
+                            </TableCell>
+                            <TableCell align="right"><img src={row.img} alt="" width={50} height={50}/></TableCell>
+                            <TableCell align="right">{row.title}</TableCell>
+                            <TableCell align="right">{row.price}</TableCell>
+                            <TableCell align="right"><input type='number' value={values} min='0' key={row.id}
+                                                            onChange={onChangeHandler}/></TableCell>
+                            <TableCell align="right">{row.price * +values}</TableCell>
+
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
+}

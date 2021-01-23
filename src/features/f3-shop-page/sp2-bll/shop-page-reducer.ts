@@ -1,6 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 // import com from '../../../main/m4-common/c2-assets/a1-img/com.jpg';
 import com from '../../../main/m4-common/photo/Sensor_Foto_2105.jpg'
+import com2 from '../../../main/m4-common/photo/sealed-temperature-sensor-ds18b20.0.jpg'
+import com3
+    from '../../../main/m4-common/photo/b9ddc1e4-60a9-11e2-b313-902b346f5219_a03c6efd-4ae4-11e4-a071-d850e6bf91f5.jpg'
+import com4 from '../../../main/m4-common/photo/full_LJ12A3-4-ZBX.jpg'
+
 
 const initialState = {
     items: [
@@ -8,88 +13,33 @@ const initialState = {
             id: 1,
             img: com,
             title: 'Pressure',
-            price: 100
+            price: 100, quantityToBuy: 1,
+            amountOfItem: 1,
+
         },
         {
             id: 2,
-            img: com,
+            img: com2,
             title: 'Pressure',
-            price: 100
+            price: 100,
+            quantityToBuy: 1,
+            amountOfItem: 1,
         },
         {
             id: 3,
-            img: com,
+            img: com3,
             title: 'Pressure',
-            price: 100
+            price: 100,
+            quantityToBuy: 1,
+            amountOfItem: 1,
         }, {
             id: 4,
-            img: com,
+            img: com4,
             title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 5,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 6,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 7,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        }, {
-            id: 8,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 9,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 10,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 11,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        }, {
-            id:12,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 13,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 14,
-            img: com,
-            title: 'Pressure',
-            price: 100
-        },
-        {
-            id: 15,
-            img: com,
-            title: 'Pressure',
-            price: 100
+            price: 100,
+            quantityToBuy: 1,
+            amountOfItem: 1,
+
         },
 
 

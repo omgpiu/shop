@@ -9,7 +9,9 @@ export const initialState: CartReducerType = {
             id: 16,
             img: com,
             title: 'Pressure',
-            price: 100
+            price: 100,
+            quantityToBuy: 1,
+            amountOfItem: 1,
         },
     ]
 };
@@ -22,9 +24,18 @@ const slice = createSlice({
         addNewItem(state, action: PayloadAction<{ item: ItemType }>) {
             state.items.push(action.payload.item)
         },
+        setQuantity(state, acton: PayloadAction<{ id: number, quantityToBuy: number }>) {
+            state.items.map(item => {
+
+                if (item.id === acton.payload.id) {
+                    item.quantityToBuy = acton.payload.quantityToBuy
+                }
+            })
+        }
+
 
     }
 });
 export const cartReducer = slice.reducer;
-export const {addNewItem} = slice.actions
+export const {addNewItem, setQuantity} = slice.actions
 

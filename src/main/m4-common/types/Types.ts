@@ -3,6 +3,8 @@ export type ItemType = {
     img: string,
     title: string,
     price: number
+    quantityToBuy: number
+    amountOfItem: number
 }
 export type CartReducerType = {
     items: ItemType[]
