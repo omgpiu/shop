@@ -2,7 +2,7 @@ import com from '../../../main/m4-common/photo/Sensor_Foto_2105.jpg';
 import {CartReducerType} from '../../../main/m4-common/types/Types';
 import {addNewItem, cartReducer, setQuantity} from './cart-reducer';
 
-let startState: CartReducerType
+let startState: CartReducerType;
 
 beforeEach(() => {
     startState = {
@@ -24,9 +24,9 @@ beforeEach(() => {
                 quantityToBuy: 1
             }
         ]
-    }
+    };
 
-})
+});
 
 test('Add new item in CartList', () => {
     const action = addNewItem({
@@ -38,24 +38,24 @@ test('Add new item in CartList', () => {
             quantityToBuy: 1,
             amountOfItem: 1,
         }
-    })
-    const newState = cartReducer(startState, action)
-    expect(newState.items.length).toBe(3)
-    expect(newState.items[2].title).toBe('sensor')
-    expect(newState.items[2].quantityToBuy).toBe(1)
-})
+    });
+    const newState = cartReducer(startState, action);
+    expect(newState.items.length).toBe(3);
+    expect(newState.items[2].title).toBe('sensor');
+    expect(newState.items[2].quantityToBuy).toBe(1);
+});
 test('change quantity to buy', () => {
     const action = setQuantity({
         id: '16',
         quantityToBuy: 10,
-    })
-    const newState = cartReducer(startState, action)
-    expect(newState.items.length).toBe(2)
-    expect(newState.items[0].quantityToBuy).toBe(10)
-    expect(newState.items[0].quantityToBuy).not.toBe(1)
-    expect(newState.items[0].id).not.toBe('1')
-    expect(newState.items[0].id).toBe('16')
-})
+    });
+    const newState = cartReducer(startState, action);
+    expect(newState.items.length).toBe(2);
+    expect(newState.items[0].quantityToBuy).toBe(10);
+    expect(newState.items[0].quantityToBuy).not.toBe(1);
+    expect(newState.items[0].id).not.toBe('1');
+    expect(newState.items[0].id).toBe('16');
+});
 test('Add the same item in CartList', () => {
     const action = addNewItem({
         newItem: {
@@ -66,11 +66,11 @@ test('Add the same item in CartList', () => {
             quantityToBuy: 1,
             amountOfItem: 1,
         }
-    })
-    const newState = cartReducer(startState, action)
-    expect(newState.items.length).toBe(2)
-    expect(newState.items[1].quantityToBuy).toBe(2)
+    });
+    const newState = cartReducer(startState, action);
+    expect(newState.items.length).toBe(2);
+    expect(newState.items[1].quantityToBuy).toBe(2);
 
-})
+});
 
 export default 1;

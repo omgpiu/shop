@@ -10,7 +10,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import {CART_PATH, SHOP_PAGE_PATH} from '../c2-routes/Routes';
 import {useSelector} from 'react-redux';
 import {getCartItems} from '../../../features/f2-cart/c2-bll/cart-selectors';
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header() {
-    const cartItems = useSelector(getCartItems).length
+    const cartItems = useSelector(getCartItems).length;
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);

@@ -1,10 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 // import com from '../../../main/m4-common/c2-assets/a1-img/com.jpg';
-import com from '../../../main/m4-common/photo/Sensor_Foto_2105.jpg'
-import com2 from '../../../main/m4-common/photo/sealed-temperature-sensor-ds18b20.0.jpg'
+import com from '../../../main/m4-common/photo/Sensor_Foto_2105.jpg';
+import com2 from '../../../main/m4-common/photo/sealed-temperature-sensor-ds18b20.0.jpg';
 import com3
-    from '../../../main/m4-common/photo/b9ddc1e4-60a9-11e2-b313-902b346f5219_a03c6efd-4ae4-11e4-a071-d850e6bf91f5.jpg'
-import com4 from '../../../main/m4-common/photo/download.jpeg'
+    from '../../../main/m4-common/photo/b9ddc1e4-60a9-11e2-b313-902b346f5219_a03c6efd-4ae4-11e4-a071-d850e6bf91f5.jpg';
+import com4 from '../../../main/m4-common/photo/download.jpeg';
 
 
 const initialState = {
@@ -183,13 +183,13 @@ const slice = createSlice({
     initialState,
     reducers: {
         setCurrentPage(state, action: PayloadAction<{ currentPage: number }>) {
-            state.currentPage = action.payload.currentPage
+            state.currentPage = action.payload.currentPage;
         },
         setTotalItemsCount(state, action: PayloadAction<{ totalItemsCount: number }>) {
-            state.totalItemsCount = action.payload.totalItemsCount
+            state.totalItemsCount = action.payload.totalItemsCount;
         },
         setPageSize(state, action: PayloadAction<{ pageSize: number }>) {
-            state.pageSize = action.payload.pageSize
+            state.pageSize = action.payload.pageSize;
         }
     }
 });

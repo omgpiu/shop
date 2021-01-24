@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Button, Checkbox, TextField} from '@material-ui/core';
 import {getCartItems} from '../c2-bll/cart-selectors';
 import {setQuantity} from '../c2-bll/cart-reducer';
-import st from './cart.module.css'
+import st from './cart.module.css';
 
 
 const useStyles = makeStyles({
@@ -22,9 +22,9 @@ const useStyles = makeStyles({
 });
 
 export const Cart: React.FC = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const classes = useStyles();
-    const cartItems = useSelector(getCartItems)
+    const cartItems = useSelector(getCartItems);
     // const [checked, setChecked] = React.useState(false);
 
 
@@ -33,8 +33,8 @@ export const Cart: React.FC = () => {
     // };
     // change amount of items to buy
     const setNewQuantity = (id: string, quantityToBuy: number) => {
-        dispatch(setQuantity({id, quantityToBuy}))
-    }
+        dispatch(setQuantity({id, quantityToBuy}));
+    };
 
 
     return (
@@ -68,20 +68,20 @@ export const Cart: React.FC = () => {
                                 <Button variant="contained" color="secondary"
                                         disabled={!item.quantityToBuy}
                                         onClick={() => {
-                                            setNewQuantity(item.id, item.quantityToBuy - 1)
+                                            setNewQuantity(item.id, item.quantityToBuy - 1);
                                         }}>
                                     -
                                 </Button>
                                 <TextField id="outlined-basic" variant="outlined"
                                            value={item.quantityToBuy}
                                            onChange={(e) => {
-                                               setNewQuantity(item.id, +e.currentTarget.value)
+                                               setNewQuantity(item.id, +e.currentTarget.value);
                                            }}
 
                                 />
                                 <Button variant="contained" color="primary"
                                         onClick={() => {
-                                            setNewQuantity(item.id, item.quantityToBuy + 1)
+                                            setNewQuantity(item.id, item.quantityToBuy + 1);
                                         }}
 
                                 >
@@ -95,4 +95,4 @@ export const Cart: React.FC = () => {
             </Table>
         </TableContainer>
     );
-}
+};

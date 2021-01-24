@@ -21,23 +21,23 @@ const slice = createSlice({
         setQuantity(state, action: PayloadAction<{ id: string, quantityToBuy: number }>) {
             state.items.map(item => {
                 if (item.id === action.payload.id) {
-                    item.quantityToBuy = action.payload.quantityToBuy
+                    item.quantityToBuy = action.payload.quantityToBuy;
                 }
-            })
+            });
         },
         addNewItem(state, action: PayloadAction<{ newItem: ItemType }>) {
             if (state.items.every(e => e.id !== action.payload.newItem.id)) {
-                state.items.push(action.payload.newItem)
+                state.items.push(action.payload.newItem);
             } else {
                 state.items.map(item => {
                     if (item.id === action.payload.newItem.id) {
-                        item.quantityToBuy = item.quantityToBuy + 1
+                        item.quantityToBuy = item.quantityToBuy + 1;
                     }
-                })
+                });
             }
         },
     }
 });
 export const cartReducer = slice.reducer;
-export const {addNewItem, setQuantity} = slice.actions
+export const {addNewItem, setQuantity} = slice.actions;
 

@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
 type PropsType = {
     newItem: ItemType
-    openModal: () => void
+    openModal: (id: string) => void
 }
 
 export const Cell: React.FC<PropsType> = ({newItem, openModal}) => {
@@ -38,8 +38,8 @@ export const Cell: React.FC<PropsType> = ({newItem, openModal}) => {
         dispatch(addNewItem({newItem}));
     };
 
-    const openModalHandler = () => {
-        openModal();
+    const openModalHandler = (id: string) => {
+        openModal(id);
     };
 
 
@@ -68,7 +68,9 @@ export const Cell: React.FC<PropsType> = ({newItem, openModal}) => {
                 >Add to Cart</Button>
                 <Button style={{width: '250px', margin: '5px'}} size="small" color="primary"
                         variant="contained"
-                onClick={openModalHandler}>More Info</Button>
+                        onClick={() => {
+                            openModalHandler(newItem.id);
+                        }}>More Info</Button>
             </CardActions>
         </Card>
     );

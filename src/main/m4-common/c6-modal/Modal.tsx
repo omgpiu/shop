@@ -8,6 +8,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import {ItemType} from '../types/Types';
 
 const styles = (theme: Theme) =>
     createStyles({
@@ -60,9 +61,10 @@ const DialogActions = withStyles((theme: Theme) => ({
 type PropsType = {
     open: boolean
     handleClose: () => void
+    currentItem: ItemType
 
 }
-export const ModalInfo: React.FC<PropsType> = ({open, handleClose}) => {
+export const ModalInfo: React.FC<PropsType> = ({open, handleClose, currentItem}) => {
 
     const onHandleClose = () => {
         handleClose();
@@ -77,22 +79,31 @@ export const ModalInfo: React.FC<PropsType> = ({open, handleClose}) => {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                        in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                        {currentItem ? currentItem.title + ' Ang Lorem Ipsum ay ginagamit na ' +
+                            'modelo ng industriya ng pagpriprint at pagtytypeset. Ang Lorem Ipsum ang naging regular ' +
+                            'na modelo simula pa noong 1500s, noong may isang di kilalang manlilimbag and kumuha ng galley ' +
+                            ' at kamakailan lang sa mga desktop publishing software tulad ' +
+                            'ng Aldus Pagemaker ginamit ang mga bersyon ng Lorem Ipsum.' : 'hey'}
                     </Typography>
                     <Typography gutterBottom>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-                        lacus vel augue laoreet rutrum faucibus dolor auctor.
+                        {currentItem ? currentItem.title + ' Ang Lorem Ipsum ay ginagamit na ' +
+                            'modelo ng industriya ng pagpriprint at pagtytypeset. Ang Lorem Ipsum ang naging regular ' +
+                            'to hindi lang limang siglo, kundi nalagpasan din nito ang paglaganap ng electronic typesetting at nanatili' +
+                            'ng parehas. Sumikat ito noong 1960s kasabay ng pag labas ng Letraset sheets na mayroong mga talata ng Lorem Ipsum,' +
+                            ' at kamakailan lang sa mga desktop publishing software tulad ' +
+                            'ng Aldus Pagemaker ginamit ang mga bersyon ng Lorem Ipsum.' : 'hey'}
                     </Typography>
                     <Typography gutterBottom>
-                        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-                        scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-                        auctor fringilla.
+                        {currentItem ? currentItem.title + ' Ang Lorem Ipsum ay ginagamit na ' +
+                            'modelo ng industriya ng pagpriprint at pagtytypeset. Ang Lorem Ipsum ang naging regular ' +
+                            'ng parehas. Sumikat ito noong 1960s kasabay ng pag labas ng Letraset sheets na mayroong mga talata ng Lorem Ipsum,' +
+                            ' at kamakailan lang sa mga desktop publishing software tulad ' +
+                            'ng Aldus Pagemaker ginamit ang mga bersyon ng Lorem Ipsum.' : 'hey'}
                     </Typography>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={onHandleClose} color="primary">
-                        Save changes
+                        Back
                     </Button>
                 </DialogActions>
             </Dialog>

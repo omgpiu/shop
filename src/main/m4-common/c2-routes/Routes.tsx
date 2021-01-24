@@ -1,8 +1,8 @@
-import React from "react";
-import {Redirect, Route, Switch} from "react-router-dom";
-import {Login} from "../../../features/f1-login/l1-ui/Login";
-import {Cart} from "../../../features/f2-cart/c1-ui/Cart";
-import {ShopPage} from "../../../features/f3-shop-page/sp1-ui/ShopPage";
+import React from 'react';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {Login} from '../../../features/f1-login/l1-ui/Login';
+import {Cart} from '../../../features/f2-cart/c1-ui/Cart';
+import {ShopPage} from '../../../features/f3-shop-page/sp1-ui/ShopPage';
 
 
 export const SIGN_IN_PATH = '/login';
