@@ -26,17 +26,22 @@ const useStyles = makeStyles({
 
 type PropsType = {
     newItem: ItemType
+    openModal: () => void
 }
 
-export const Cell: React.FC<PropsType> = ({newItem}) => {
+export const Cell: React.FC<PropsType> = ({newItem, openModal}) => {
 
-    const classes = useStyles()
-    const dispatch = useDispatch()
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
     const changeIsActive = () => {
+        dispatch(addNewItem({newItem}));
+    };
 
-        dispatch(addNewItem({newItem}))
-    }
+    const openModalHandler = () => {
+        openModal();
+    };
+
 
     return (
         <Card className={classes.root}>
@@ -62,7 +67,8 @@ export const Cell: React.FC<PropsType> = ({newItem}) => {
                         variant="contained"
                 >Add to Cart</Button>
                 <Button style={{width: '250px', margin: '5px'}} size="small" color="primary"
-                        variant="contained">More Info</Button>
+                        variant="contained"
+                onClick={openModalHandler}>More Info</Button>
             </CardActions>
         </Card>
     );
