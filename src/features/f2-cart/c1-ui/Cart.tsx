@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,8 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Checkbox, TextField} from '@material-ui/core';
-import {getCartItems} from '../c2-bll/cart-selectors';
-import {setQuantity} from '../c2-bll/cart-reducer';
+import {getCartItems, getTotalPrice} from '../c2-bll/cart-selectors';
+import {setQuantity, setTotalPrice} from '../c2-bll/cart-reducer';
 import st from './cart.module.css';
 
 
@@ -25,21 +25,27 @@ export const Cart: React.FC = () => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const cartItems = useSelector(getCartItems);
-    // const [checked, setChecked] = React.useState(false);
+    const totalPrice = useSelector(getTotalPrice);
 
 
-    // const checkboxHandleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    //     setChecked(event.currentTarget.checked);
-    // };
     // change amount of items to buy
     const setNewQuantity = (id: string, quantityToBuy: number) => {
         dispatch(setQuantity({id, quantityToBuy}));
     };
 
+    //TODO upgrade performance
+    console.log('render');
+
+
+
+    useEffect(() => {
+        dispatch(setTotalPrice());
+    },[cartItems]);
 
     return (
         <TableContainer component={Paper} style={{width: '80%', margin: '0 auto'}}>
             <Table className={classes.table} aria-label="simple table">
+                <caption>Total Price: {totalPrice}</caption>
                 <TableHead className={st.header}>
                     <TableRow>
                         <TableCell>Selected Items</TableCell>
@@ -56,7 +62,6 @@ export const Cart: React.FC = () => {
                         <TableRow key={item.id}>
                             <TableCell component="th" scope="row">
                                 <Checkbox
-
                                     inputProps={{'aria-label': 'primary checkbox'}}
                                 />
                             </TableCell>
@@ -69,7 +74,8 @@ export const Cart: React.FC = () => {
                                         disabled={!item.quantityToBuy}
                                         onClick={() => {
                                             setNewQuantity(item.id, item.quantityToBuy - 1);
-                                        }}>
+                                        }}
+                                >
                                     -
                                 </Button>
                                 <TextField id="outlined-basic" variant="outlined"
@@ -83,12 +89,11 @@ export const Cart: React.FC = () => {
                                         onClick={() => {
                                             setNewQuantity(item.id, item.quantityToBuy + 1);
                                         }}
-
                                 >
                                     +
                                 </Button>
                             </TableCell>
-                            <TableCell align="center">{item.price * item.quantityToBuy}</TableCell>
+                            <TableCell align="center">{item.price * item.quantityToBuy} </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
