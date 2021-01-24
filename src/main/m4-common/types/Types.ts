@@ -8,4 +8,5 @@ export type ItemType = {
 }
 export type CartReducerType = {
     items: ItemType[]
+    totalPrice: number
 }

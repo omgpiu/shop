@@ -23,7 +23,8 @@ beforeEach(() => {
                 amountOfItem: 1,
                 quantityToBuy: 1
             }
-        ]
+        ],
+        totalPrice: 0
     };
 
 });
@@ -70,7 +71,22 @@ test('Add the same item in CartList', () => {
     const newState = cartReducer(startState, action);
     expect(newState.items.length).toBe(2);
     expect(newState.items[1].quantityToBuy).toBe(2);
-
 });
+// test('Change total Price', () => {
+//     const action = addNewItem({
+//         newItem: {
+//             id: '17',
+//             img: com,
+//             title: 'sensor',
+//             price: 100,
+//             quantityToBuy: 1,
+//             amountOfItem: 1,
+//         }
+//     });
+//     const newState = cartReducer(startState, action);
+//     expect(newState.items.length).toBe(3);
+//     expect(newState.totalPrice).toBe(300);
+// });
+
 
 export default 1;

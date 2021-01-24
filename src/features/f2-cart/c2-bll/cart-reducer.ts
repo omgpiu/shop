@@ -12,7 +12,8 @@ export const initialState: CartReducerType = {
         quantityToBuy: 1,
         amountOfItem: 1,
 
-    },]
+    }],
+    totalPrice: 0
 };
 const slice = createSlice({
     name: 'app',
@@ -36,8 +37,12 @@ const slice = createSlice({
                 });
             }
         },
+        setTotalPrice: function (state, action: PayloadAction) {
+            // const reducer = (acc: number, value: number) => acc + value;
+            state.totalPrice = state.items.map(e => e.price * e.quantityToBuy).reduce((acc: number, value: number) => acc + value);
+        }
     }
 });
 export const cartReducer = slice.reducer;
-export const {addNewItem, setQuantity} = slice.actions;
+export const {addNewItem, setQuantity, setTotalPrice} = slice.actions;
 
