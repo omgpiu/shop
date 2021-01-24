@@ -72,10 +72,12 @@ test('Add the same item in CartList', () => {
     expect(newState.items.length).toBe(2);
     expect(newState.items[1].quantityToBuy).toBe(2);
 });
+//TODO test refactor
+
 // test('Change total Price', () => {
 //     const action = addNewItem({
 //         newItem: {
-//             id: '17',
+//             id: '19',
 //             img: com,
 //             title: 'sensor',
 //             price: 100,
