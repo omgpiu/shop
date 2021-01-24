@@ -62,7 +62,7 @@ export const Cell: React.FC<PropsType> = ({newItem}) => {
                         variant="contained"
                 >Add to Cart</Button>
                 <Button style={{width: '250px', margin: '5px'}} size="small" color="primary"
-                        variant="contained">Documents</Button>
+                        variant="contained">More Info</Button>
             </CardActions>
         </Card>
     );
