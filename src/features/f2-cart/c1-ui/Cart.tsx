@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,9 +9,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Button} from '@material-ui/core';
+import {Button, Checkbox, TextField} from '@material-ui/core';
 import {getCartItems} from '../c2-bll/cart-selectors';
-import { setQuantity } from '../c2-bll/cart-reducer';
+import {setQuantity} from '../c2-bll/cart-reducer';
 
 const useStyles = makeStyles({
     table: {
@@ -20,15 +20,21 @@ const useStyles = makeStyles({
 });
 
 export const Cart: React.FC = () => {
-    const cartItems = useSelector(getCartItems)
     const dispatch = useDispatch()
-    const increaseQuantity = (id: string, quantityToBuy: number) => {
-        dispatch(setQuantity({id, quantityToBuy}))
-    }
-    const decreaseQuantity = (id: string, quantityToBuy: number) => {
-        dispatch(setQuantity({id, quantityToBuy}))
-    }
     const classes = useStyles();
+    const cartItems = useSelector(getCartItems)
+    const [checked, setChecked] = React.useState(false);
+
+
+    const checkboxHandleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.currentTarget.checked);
+    };
+    // change amount of items to buy
+    const setNewQuantity = (id: string, quantityToBuy: number) => {
+        dispatch(setQuantity({id, quantityToBuy}))
+    }
+
+
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
@@ -40,25 +46,32 @@ export const Cart: React.FC = () => {
                         <TableCell align="right">Unit Price</TableCell>
                         <TableCell align="right">Quantity</TableCell>
                         <TableCell align="right">Subtotal</TableCell>
-
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {cartItems.map((item) => (
                         <TableRow key={item.id}>
                             <TableCell component="th" scope="row">
-                                <input type='checkbox'/>
+                                <Checkbox
+                                    checked={checked}
+                                    onChange={checkboxHandleChange}
+                                    inputProps={{'aria-label': 'primary checkbox'}}
+                                />
                             </TableCell>
                             <TableCell align="right"><img src={item.img} alt="" width={50} height={50}/></TableCell>
                             <TableCell align="right">{item.title}</TableCell>
                             <TableCell align="right">{item.price}</TableCell>
                             <TableCell align="right">
-                                <div>
-                                    {item.quantityToBuy}
-                                </div>
+                                <TextField id="outlined-basic" label="Outlined" variant="outlined"
+                                           value={item.quantityToBuy}
+                                           onChange={(e) => {
+                                               setNewQuantity(item.id, +e.currentTarget.value)
+                                           }}
+
+                                />
                                 <Button variant="contained" color="primary" size='small'
-                                        onClick={(e) => {
-                                            increaseQuantity(item.id, item.quantityToBuy + 1)
+                                        onClick={() => {
+                                            setNewQuantity(item.id, item.quantityToBuy + 1)
                                         }}
                                 >
                                     Add one
@@ -66,7 +79,7 @@ export const Cart: React.FC = () => {
                                 <Button variant="contained" color="secondary" size='small'
                                         disabled={!item.quantityToBuy}
                                         onClick={() => {
-                                            decreaseQuantity(item.id, item.quantityToBuy - 1)
+                                            setNewQuantity(item.id, item.quantityToBuy - 1)
                                         }}>
                                     Delete one
                                 </Button>
