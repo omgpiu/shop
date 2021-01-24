@@ -1,9 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CartReducerType, ItemType} from '../../../main/m4-common/types/Types';
+import com from '../../../main/m4-common/photo/Sensor_Foto_2105.jpg';
 
 
 export const initialState: CartReducerType = {
-    items: []
+    items: [{
+        id: '1',
+        img: com,
+        title: 'Sensor',
+        price: 100,
+        quantityToBuy: 1,
+        amountOfItem: 1,
+
+    },]
 };
 const slice = createSlice({
     name: 'app',

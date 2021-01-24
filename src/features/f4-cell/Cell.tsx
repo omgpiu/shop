@@ -1,6 +1,6 @@
 import {makeStyles} from '@material-ui/core/styles';
 import {Button, Card, CardActions, CardContent, Typography} from '@material-ui/core';
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch} from 'react-redux';
 import {ItemType} from '../../main/m4-common/types/Types';
 import {addNewItem} from '../f2-cart/c2-bll/cart-reducer';
@@ -31,7 +31,6 @@ type PropsType = {
 export const Cell: React.FC<PropsType> = ({newItem}) => {
 
     const classes = useStyles()
-    const [isActive, setIsActive] = useState(false)
     const dispatch = useDispatch()
 
     const changeIsActive = () => {
@@ -46,7 +45,7 @@ export const Cell: React.FC<PropsType> = ({newItem}) => {
                     {newItem.title}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    <img src={newItem.img} alt="" style={{width: '100%'}}/>
+                    <img src={newItem.img} alt="" style={{width: '100%', height: '100%'}}/>
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                     adjective
@@ -57,18 +56,11 @@ export const Cell: React.FC<PropsType> = ({newItem}) => {
             </CardContent>
 
             <CardActions style={{flexWrap: 'wrap'}}>
-                {/*{*/}
-                {/*    !isActive ? <Button style={{width: '250px', margin: '5px'}}*/}
-                {/*                        onClick={changeIsActive}*/}
-                {/*                        size="small" color="primary"*/}
-                {/*                        variant="contained">Buy*/}
-                {/*        online</Button> : <TextField  type='number' InputLabelProps={{shrink: true}}/>*/}
-                {/*}*/}
                 <Button style={{width: '250px', margin: '5px'}}
                         onClick={changeIsActive}
                         size="small" color="primary"
                         variant="contained"
-                >Buy online</Button>
+                >Add to Cart</Button>
                 <Button style={{width: '250px', margin: '5px'}} size="small" color="primary"
                         variant="contained">Documents</Button>
             </CardActions>
