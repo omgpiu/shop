@@ -1,5 +1,5 @@
 export type ItemType = {
-    id: number,
+    id: string,
     img: string,
     title: string,
     price: number

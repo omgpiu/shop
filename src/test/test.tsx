@@ -1,6 +1,4 @@
-import com from '../main/m4-common/photo/Sensor_Foto_2105.jpg';
-
-import React, {ChangeEvent, useState} from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,9 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {useDispatch, useSelector} from 'react-redux';
-import {getCartItems, getQuantity} from '../features/f2-cart/c2-bll/cart-selectors';
-import {initialState, setQuantity} from '../features/f2-cart/c2-bll/cart-reducer';
-import {rootReducer} from '../main/m2-bll/store';
+import {getCartItems} from '../features/f2-cart/c2-bll/cart-selectors';
+import {setQuantity} from '../features/f2-cart/c2-bll/cart-reducer';
+import {Button} from '@material-ui/core';
 
 const useStyles = makeStyles({
     table: {
@@ -20,43 +18,22 @@ const useStyles = makeStyles({
     },
 });
 
-const rows = [
-    {
-        id: 1,
-        img: com,
-        title: 'Pressure',
-        price: 100
-    },
-    {
-        id: 1,
-        img: com,
-        title: 'Pressure',
-        price: 100
-    },
+export const CartTable: React.FC = () => {
 
-];
-
-export const CartTable = () => {
-    const [values, setValue] = useState('1')
+    const cartItems = useSelector(getCartItems)
+    const [values, setValue] = useState(1)
     const dispatch = useDispatch()
-    // const getQuantityItem = useSelector(getQuantity({},17))
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        // setValue(e.currentTarget.value)
 
-        dispatch(setQuantity({id: 1, quantityToBuy: +e.currentTarget.value}))
-
-        // if (+values >= 0) {
-        //     setValue(e.currentTarget.value)
-        // } else if (+values < 0) {
-        //     setValue('0')
-        // }
-
+    const increaseQuantity = (id: string, quantityToBuy: number) => {
+        dispatch(setQuantity({id, quantityToBuy}))
+    }
+    const decreaseQuantity = (id: string, quantityToBuy: number) => {
+        dispatch(setQuantity({id, quantityToBuy}))
     }
 
-
     const classes = useStyles();
-    const cartItems = useSelector(getCartItems)
+
     return (
 
         <TableContainer component={Paper}>
@@ -73,18 +50,35 @@ export const CartTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {cartItems.map((row) => (
-                        <TableRow key={row.id}>
+                    {cartItems.map((item) => (
+
+                        <TableRow key={item.id}>
                             <TableCell component="th" scope="row">
                                 <input type='checkbox'/>
                             </TableCell>
-                            <TableCell align="right"><img src={row.img} alt="" width={50} height={50}/></TableCell>
-                            <TableCell align="right">{row.title}</TableCell>
-                            <TableCell align="right">{row.price}</TableCell>
-                            <TableCell align="right"><input type='number' value={values} min='0' key={row.id}
-                                                            onChange={onChangeHandler}/></TableCell>
-                            <TableCell align="right">{row.price * +values}</TableCell>
-
+                            <TableCell align="right"><img src={item.img} alt="" width={50} height={50}/></TableCell>
+                            <TableCell align="right">{item.title}</TableCell>
+                            <TableCell align="right">{item.price}</TableCell>
+                            <TableCell align="right">
+                                <div>
+                                    {item.quantityToBuy}
+                                </div>
+                                <Button variant="contained" color="primary" size='small'
+                                        onClick={(e) => {
+                                            increaseQuantity(item.id, item.quantityToBuy + 1)
+                                        }}
+                                >
+                                    +
+                                </Button>
+                                <Button variant="contained" color="secondary" size='small'
+                                        disabled={!item.quantityToBuy}
+                                        onClick={() => {
+                                            decreaseQuantity(item.id, item.quantityToBuy - 1)
+                                        }}>
+                                    -
+                                </Button>
+                            </TableCell>
+                            <TableCell align="right">{item.price * item.quantityToBuy}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

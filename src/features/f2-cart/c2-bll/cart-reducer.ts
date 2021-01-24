@@ -6,7 +6,7 @@ import com from '../../../main/m4-common/photo/Sensor_Foto_2105.jpg';
 export const initialState: CartReducerType = {
     items: [
         {
-            id: 16,
+            id: '16',
             img: com,
             title: 'Pressure',
             price: 100,
@@ -24,15 +24,13 @@ const slice = createSlice({
         addNewItem(state, action: PayloadAction<{ item: ItemType }>) {
             state.items.push(action.payload.item)
         },
-        setQuantity(state, acton: PayloadAction<{ id: number, quantityToBuy: number }>) {
+        setQuantity(state, acton: PayloadAction<{ id: string, quantityToBuy: number }>) {
             state.items.map(item => {
-
                 if (item.id === acton.payload.id) {
                     item.quantityToBuy = acton.payload.quantityToBuy
                 }
             })
-        }
-
+        },
 
     }
 });

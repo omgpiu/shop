@@ -35,7 +35,7 @@ export const Cell: React.FC<PropsType> = ({item}) => {
     const dispatch = useDispatch()
 
     const changeIsActive = () => {
-        // setIsActive(!isActive)
+
         dispatch(addNewItem({item}))
     }
 

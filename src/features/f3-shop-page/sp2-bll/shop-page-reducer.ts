@@ -10,7 +10,7 @@ import com4 from '../../../main/m4-common/photo/full_LJ12A3-4-ZBX.jpg'
 const initialState = {
     items: [
         {
-            id: 1,
+            id: '1',
             img: com,
             title: 'Pressure',
             price: 100, quantityToBuy: 1,
@@ -18,7 +18,7 @@ const initialState = {
 
         },
         {
-            id: 2,
+            id: '2',
             img: com2,
             title: 'Pressure',
             price: 100,
@@ -26,14 +26,14 @@ const initialState = {
             amountOfItem: 1,
         },
         {
-            id: 3,
+            id: '3',
             img: com3,
             title: 'Pressure',
             price: 100,
             quantityToBuy: 1,
             amountOfItem: 1,
         }, {
-            id: 4,
+            id: '4',
             img: com4,
             title: 'Pressure',
             price: 100,

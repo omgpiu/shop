@@ -8,7 +8,7 @@ beforeEach(() => {
     startState = {
         items: [
             {
-                id: 16,
+                id: '16',
                 img: com,
                 title: 'Pressure',
                 price: 100,
@@ -16,7 +16,7 @@ beforeEach(() => {
                 quantityToBuy: 1
             },
             {
-                id: 17,
+                id: '17',
                 img: com,
                 title: 'Pressure',
                 price: 100,
@@ -31,7 +31,7 @@ beforeEach(() => {
 test('Add new item in CartList', () => {
     const action = addNewItem({
         item: {
-            id: 17,
+            id: '17',
             img: com,
             title: 'sensor',
             price: 100,
@@ -45,15 +45,15 @@ test('Add new item in CartList', () => {
 })
 test('change quantity to buy', () => {
     const action = setQuantity({
-        id: 16,
+        id: '16',
         quantityToBuy: 10,
     })
     const newState = cartReducer(startState, action)
     expect(newState.items.length).toBe(2)
     expect(newState.items[0].quantityToBuy).toBe(10)
     expect(newState.items[0].quantityToBuy).not.toBe(1)
-    expect(newState.items[0].id).not.toBe(1)
-    expect(newState.items[0].id).toBe(16)
+    expect(newState.items[0].id).not.toBe('1')
+    expect(newState.items[0].id).toBe('16')
 
 })
 
