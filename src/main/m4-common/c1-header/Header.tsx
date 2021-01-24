@@ -11,7 +11,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import {Link} from 'react-router-dom'
-import {CART_PATH, SHOP_PAGE_PATH} from "../c2-routes/Routes";
+import {CART_PATH, SHOP_PAGE_PATH} from '../c2-routes/Routes';
+import {useSelector} from 'react-redux';
+import {getCartItems} from '../../../features/f2-cart/c2-bll/cart-selectors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -80,30 +82,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header() {
+    const cartItems = useSelector(getCartItems).length
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
-
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
-
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
-
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <Menu
@@ -132,14 +129,14 @@ export default function Header() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <AddShoppingCartIcon/>
+                <Link to={CART_PATH}>
+                    <IconButton aria-label="show 4 new mails" color="inherit">
+                        <Badge badgeContent={cartItems} color="secondary">
+                            <AddShoppingCartIcon/>
 
-                    </Badge>
-                </IconButton>
-                {/*<p>Shopping cart</p>*/}
-
+                        </Badge>
+                    </IconButton>
+                </Link>
             </MenuItem>
             <MenuItem>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -167,14 +164,16 @@ export default function Header() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                    >
-                        <Link to={SHOP_PAGE_PATH}> <MenuIcon/></Link>
-                    </IconButton>
+                    <Link to={SHOP_PAGE_PATH}>
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="open drawer"
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                    </Link>
                     <Typography className={classes.title} variant="h6" noWrap>
                         380 Volt
                     </Typography>
@@ -193,17 +192,13 @@ export default function Header() {
                     </div>
                     <div className={classes.grow}/>
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-
-                                <Link to={CART_PATH}> <AddShoppingCartIcon/></Link>
-                            </Badge>
-                        </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon/>
-                            </Badge>
-                        </IconButton>
+                        <Link to={CART_PATH}>
+                            <IconButton aria-label="show 4 new mails" color="inherit">
+                                <Badge badgeContent={cartItems} color="secondary">
+                                    <AddShoppingCartIcon/>
+                                </Badge>
+                            </IconButton>
+                        </Link>
                         <IconButton
                             edge="end"
                             aria-label="account of current user"
