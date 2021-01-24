@@ -30,8 +30,8 @@ beforeEach(() => {
 
 test('Add new item in CartList', () => {
     const action = addNewItem({
-        item: {
-            id: '17',
+        newItem: {
+            id: '18',
             img: com,
             title: 'sensor',
             price: 100,
@@ -40,8 +40,9 @@ test('Add new item in CartList', () => {
         }
     })
     const newState = cartReducer(startState, action)
-    expect(newState.items.length).toBe(2)
-    expect(newState.items[1].title).toBe('sensor')
+    expect(newState.items.length).toBe(3)
+    expect(newState.items[2].title).toBe('sensor')
+    expect(newState.items[2].quantityToBuy).toBe(1)
 })
 test('change quantity to buy', () => {
     const action = setQuantity({
@@ -54,8 +55,22 @@ test('change quantity to buy', () => {
     expect(newState.items[0].quantityToBuy).not.toBe(1)
     expect(newState.items[0].id).not.toBe('1')
     expect(newState.items[0].id).toBe('16')
+})
+test('Add the same item in CartList', () => {
+    const action = addNewItem({
+        newItem: {
+            id: '17',
+            img: com,
+            title: 'sensor',
+            price: 100,
+            quantityToBuy: 1,
+            amountOfItem: 1,
+        }
+    })
+    const newState = cartReducer(startState, action)
+    expect(newState.items.length).toBe(2)
+    expect(newState.items[1].quantityToBuy).toBe(2)
 
 })
-
 
 export default 1;

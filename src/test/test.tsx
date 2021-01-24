@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -19,23 +19,16 @@ const useStyles = makeStyles({
 });
 
 export const CartTable: React.FC = () => {
-
     const cartItems = useSelector(getCartItems)
-    const [values, setValue] = useState(1)
     const dispatch = useDispatch()
-
-
     const increaseQuantity = (id: string, quantityToBuy: number) => {
         dispatch(setQuantity({id, quantityToBuy}))
     }
     const decreaseQuantity = (id: string, quantityToBuy: number) => {
         dispatch(setQuantity({id, quantityToBuy}))
     }
-
     const classes = useStyles();
-
     return (
-
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -51,7 +44,6 @@ export const CartTable: React.FC = () => {
                 </TableHead>
                 <TableBody>
                     {cartItems.map((item) => (
-
                         <TableRow key={item.id}>
                             <TableCell component="th" scope="row">
                                 <input type='checkbox'/>
@@ -68,14 +60,14 @@ export const CartTable: React.FC = () => {
                                             increaseQuantity(item.id, item.quantityToBuy + 1)
                                         }}
                                 >
-                                    +
+                                    Add one
                                 </Button>
                                 <Button variant="contained" color="secondary" size='small'
                                         disabled={!item.quantityToBuy}
                                         onClick={() => {
                                             decreaseQuantity(item.id, item.quantityToBuy - 1)
                                         }}>
-                                    -
+                                    Delete one
                                 </Button>
                             </TableCell>
                             <TableCell align="right">{item.price * item.quantityToBuy}</TableCell>

@@ -25,10 +25,10 @@ const useStyles = makeStyles({
 });
 
 type PropsType = {
-    item: ItemType
+    newItem: ItemType
 }
 
-export const Cell: React.FC<PropsType> = ({item}) => {
+export const Cell: React.FC<PropsType> = ({newItem}) => {
 
     const classes = useStyles()
     const [isActive, setIsActive] = useState(false)
@@ -36,23 +36,23 @@ export const Cell: React.FC<PropsType> = ({item}) => {
 
     const changeIsActive = () => {
 
-        dispatch(addNewItem({item}))
+        dispatch(addNewItem({newItem}))
     }
 
     return (
         <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {item.title}
+                    {newItem.title}
                 </Typography>
                 <Typography variant="h5" component="h2">
-                    <img src={item.img} alt="" style={{width: '100%'}}/>
+                    <img src={newItem.img} alt="" style={{width: '100%'}}/>
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                     adjective
                 </Typography>
                 <Typography variant="body2" component="p">
-                    {item.price}
+                    {newItem.price}
                 </Typography>
             </CardContent>
 

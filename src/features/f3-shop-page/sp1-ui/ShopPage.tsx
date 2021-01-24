@@ -21,7 +21,7 @@ export const ShopPage: React.FC<PropsType> = () => {
 
                     return <Grid key={item.id} style={{marginTop: '5px'}}>
                         <Cell
-                            item={item}/>
+                            newItem={item}/>
                     </Grid>;
                 })
             }

@@ -1,19 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CartReducerType, ItemType} from '../../../main/m4-common/types/Types';
-import com from '../../../main/m4-common/photo/Sensor_Foto_2105.jpg';
 
 
 export const initialState: CartReducerType = {
-    items: [
-        {
-            id: '16',
-            img: com,
-            title: 'Pressure',
-            price: 100,
-            quantityToBuy: 1,
-            amountOfItem: 1,
-        },
-    ]
+    items: []
 };
 
 
@@ -21,16 +11,29 @@ const slice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        addNewItem(state, action: PayloadAction<{ item: ItemType }>) {
-            state.items.push(action.payload.item)
-        },
-        setQuantity(state, acton: PayloadAction<{ id: string, quantityToBuy: number }>) {
+        setQuantity(state, action: PayloadAction<{ id: string, quantityToBuy: number }>) {
             state.items.map(item => {
-                if (item.id === acton.payload.id) {
-                    item.quantityToBuy = acton.payload.quantityToBuy
+                if (item.id === action.payload.id) {
+                    item.quantityToBuy = action.payload.quantityToBuy
                 }
             })
         },
+        addNewItem(state, action: PayloadAction<{ newItem: ItemType }>) {
+
+            if (state.items.every(e => e.id !== action.payload.newItem.id)) {
+                debugger
+                state.items.push(action.payload.newItem)
+            } else {
+                state.items.map(item => {
+                    if (item.id === action.payload.newItem.id) {
+                        item.quantityToBuy = item.quantityToBuy + 1
+                        debugger
+                    }
+                })
+            }
+
+        },
+
 
     }
 });
