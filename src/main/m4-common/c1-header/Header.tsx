@@ -14,6 +14,12 @@ import {Link} from 'react-router-dom';
 import {CART_PATH, SHOP_PAGE_PATH} from '../c2-routes/Routes';
 import {useSelector} from 'react-redux';
 import {getCartItems} from '../../../features/f2-cart/c2-bll/cart-selectors';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+
+
+
+
+
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -171,7 +177,7 @@ export default function Header() {
                             color="inherit"
                             aria-label="open drawer"
                         >
-                            <MenuIcon/>
+                            <HomeOutlinedIcon/>
                         </IconButton>
                     </Link>
                     <Typography className={classes.title} variant="h6" noWrap>
